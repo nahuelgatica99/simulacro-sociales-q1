@@ -492,4 +492,4 @@ function endGame() {
 }
 
 // ESTO DEBE IR FUERA DE CUALQUIER LLAVE
-mainMenu(););
+mainMenu();
