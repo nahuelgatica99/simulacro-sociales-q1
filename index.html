@@ -1,34 +1,20 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simulacro de Sociales</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-
 <div id="game-container">
-<div id="hud">
+  <div id="hud">
     <span>Puntos: <span id="points">0</span></span>
-    <span>⏳ <span id="timer">15:00</span></span> <span id="rank">Novato 🐣</span>
-</div>
-  
+    <span>⏳ <span id="timer">30:00</span></span> 
+    <span id="rank">Novato 🐣</span>
+  </div>
+
   <div id="screen">
     <h2 id="title">CENTRAL DE ESTUDIO</h2>
     <div id="display-area"></div>
+    <div id="help-area"></div>
   </div>
 
   <div id="controls">
     <div id="action-buttons"></div>
-    <div id="help-area"></div>
     <button onclick="mainMenu()" class="btn-nav">🏠 Menú Principal</button>
   </div>
 </div>
 
-<audio id="sfx-win" src="https://assets.mixkit.co/active_storage/sfx/1435/1435-preview.mp3"></audio>
-
-<script src="script.js"></script>
-
-</body>
-</html>
+<audio id="sfx-win" src="https://assets.mixkit.co/active_storage/sfx/2018/2018-preview.mp3"></audio>
