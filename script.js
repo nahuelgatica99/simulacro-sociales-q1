@@ -447,15 +447,10 @@ function updateHUD() {
 }
 
 function endGame() {
-  // 1. Detener el reloj inmediatamente
   clearInterval(timerInterval);
   timerActive = false;
 
-  // CÁLCULO DE DURACIÓN REAL
-  const endTime = Date.now();
-  const diffMs = endTime - startTime; 
-  const totalSecondsUsed = Math.floor(diffMs / 1000);
-  
+  const totalSecondsUsed = Math.floor((Date.now() - startTime) / 1000);
   const min = Math.floor(totalSecondsUsed / 60);
   const seg = totalSecondsUsed % 60;
   const duracionTexto = `${min}m ${seg}s`;
@@ -474,33 +469,27 @@ function endGame() {
   historial.push(intento);
   localStorage.setItem('historial', JSON.stringify(historial));
 
-  // Lógica de Récord
   let esNuevoRecord = false;
   if (score > maxScore) {
     maxScore = score;
     localStorage.setItem('maxScore', maxScore);
     esNuevoRecord = true;
-    
     const trompetas = new Audio('https://www.myinstants.com/media/sounds/tada.mp3');
     trompetas.play();
   }
 
-  // Mostrar pantalla final
   document.getElementById('title').innerText = "RESUMEN FINAL";
-  
   document.getElementById('display-area').innerHTML = `
     <center>
       <h3 style="margin:0">¡Simulacro terminado!</h3>
       <div style="font-size:3.5rem; color:var(--rojo-principal); font-weight:bold;">${score}</div>
       <p style="margin:0">Puntos logrados en ${duracionTexto}</p>
       ${esNuevoRecord ? "<h2 style='color:var(--rojo-principal)'>🎺 ¡NUEVO RÉCORD! 🎺</h2>" : ""}
-      <button class="btn-nav" onclick="mainMenu()" style="margin-top:20px; background:var(--rojo-principal); color:white; border:none; padding:10px 20px; border-radius:10px; cursor:pointer;">Volver al Menú</button>
+      <button class="btn-nav" onclick="mainMenu()" style="margin-top:20px">Volver al Menú</button>
     </center>
   `;
-  
-  // Limpiamos los botones de acción para que no se superpongan
   document.getElementById('action-buttons').innerHTML = "";
 }
 
-// Iniciar el menú al cargar la página
-mainMenu();
+// ESTO DEBE IR FUERA DE CUALQUIER LLAVE
+mainMenu(););
