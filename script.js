@@ -448,12 +448,12 @@ function updateHUD() {
 
 function endGame() {
   // 1. Detener el reloj inmediatamente
-clearInterval(timerInterval);
+  clearInterval(timerInterval);
   timerActive = false;
 
   // CÁLCULO DE DURACIÓN REAL
   const endTime = Date.now();
-  const diffMs = endTime - startTime; // Diferencia en milisegundos
+  const diffMs = endTime - startTime; 
   const totalSecondsUsed = Math.floor(diffMs / 1000);
   
   const min = Math.floor(totalSecondsUsed / 60);
@@ -468,26 +468,25 @@ clearInterval(timerInterval);
     puntos: score,
     fecha: fechaActual,
     hora: horaActual,
-    duracion: duracionTexto // Ahora guardará "0m 32s"
+    duracion: duracionTexto 
   };
   
   historial.push(intento);
   localStorage.setItem('historial', JSON.stringify(historial));
 
-  // 5. Lógica de Récord y Trompetas
+  // Lógica de Récord
   let esNuevoRecord = false;
   if (score > maxScore) {
     maxScore = score;
     localStorage.setItem('maxScore', maxScore);
     esNuevoRecord = true;
     
-    // Sonido de trompetas/victoria
     const trompetas = new Audio('https://www.myinstants.com/media/sounds/tada.mp3');
     trompetas.play();
   }
 
-// 6. Mostrar pantalla final respetando tu estilo
-  document.getElementById('title').innerText = "RESUMEN FINAL"; // Aquí usa comillas normales o backticks
+  // Mostrar pantalla final
+  document.getElementById('title').innerText = "RESUMEN FINAL";
   
   document.getElementById('display-area').innerHTML = `
     <center>
@@ -495,9 +494,13 @@ clearInterval(timerInterval);
       <div style="font-size:3.5rem; color:var(--rojo-principal); font-weight:bold;">${score}</div>
       <p style="margin:0">Puntos logrados en ${duracionTexto}</p>
       ${esNuevoRecord ? "<h2 style='color:var(--rojo-principal)'>🎺 ¡NUEVO RÉCORD! 🎺</h2>" : ""}
-      <button class="btn-nav" onclick="mainMenu()" style="margin-top:20px">Volver al Menú</button>
+      <button class="btn-nav" onclick="mainMenu()" style="margin-top:20px; background:var(--rojo-principal); color:white; border:none; padding:10px 20px; border-radius:10px; cursor:pointer;">Volver al Menú</button>
     </center>
   `;
+  
+  // Limpiamos los botones de acción para que no se superpongan
+  document.getElementById('action-buttons').innerHTML = "";
 }
 
+// Iniciar el menú al cargar la página
 mainMenu();
